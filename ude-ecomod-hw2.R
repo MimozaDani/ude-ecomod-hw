@@ -1,10 +1,10 @@
 ## Assignment 2 ##
-## Author: ____ YOUR NAME HERE ____
-## Date: xx-xx-20xx
+## Author: Mimoza Dani
+## Date: 01-12-2022
 
 ## Instructions. In my lecture notes from class on 17-11-2023 (Lecture Notes 3.1), I showed code for a continuous-time model of logistic growth. I paste that code below. Please modify the code to show logistic growth dynamics for values of r = 2.7 and K = 2500.
 
-## Logistic growth
+## Logistic growth ##
 cont_log <- function(t, state, parameters) {
   with(as.list(c(state, parameters)), {
     dN <-  r * N * (1 - (N/K))
@@ -12,12 +12,11 @@ cont_log <- function(t, state, parameters) {
   })
 }
 
-parameters <- c(r = 1.7,K = 1000)
+parameters <- c(r = 2.7,K = 2500)
 state      <- c(N = 42)
 times      <- seq(0, 10, by = 0.01)
 
 out <- deSolve::ode(y = state, times = times, func = cont_log, parms = parameters)
 out.g <- as.data.frame(out)
+library(ggplot2)
 ggplot2::ggplot(out.g,aes(time,N)) + geom_line()
-
-#### INSERT YOUR CODE BELOW

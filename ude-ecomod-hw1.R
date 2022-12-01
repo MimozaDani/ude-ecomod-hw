@@ -1,41 +1,32 @@
 ## Assignment 1 ##
-## Author: ____ YOUR NAME HERE ____
-## Date: xx-xx-20xx
+## Author: Mimoza Dani
+## Date: 01.12.2022
 
-## Instructions. Please use the function below to create a working simulation of mouse population dynamics (N) over time
-mice <- function(Nt,d,b,m){
-  Nt1 <- (1+b)*(1-d)*Nt + m
+## Mice model ##
+d<-.7
+b<-3
+m<-4
+Nt<-42
+
+mice<- function(Nt, b, d, m){
+  Nt1<-(1+b)*(1-d)*Nt+m
   return(Nt1)
 }
 
-## Help. Recall that I created an example using a different function / model. Use that as a template to create your mouse simulation in 6 steps.
-############################################################
+mice(Nt, b, d, m)
+N<- Nt
+N
 
-# Step 1. Example parameters
-b <- 1.7
-c <- .15
-Pt <- 6
-
-# Step 2. Example equation function
-example_equation_function <- function(b,c,Pt){
-  Pt1 <- (b*Pt) / (1 + c*Pt)
-  return(Pt1)
+for(i in 1:100){
+  Nt1<-mice(Nt, b, d, m)
+  N<-c(N, Nt1)
+  Nt<-Nt1
 }
 
-# Step 3. Make sure the function works
-Pt1 <- example_equation_function(b,c,Pt)
+N
+plot(N)
+plot(N,xlab="time",ylab="N_mice",pch=19,col="black")
 
-# Step 4. Create a new variable to hold future values of P
-P <- rep(NA,100)
 
-# Step 5. Create a for loop to iteratively calculate P
-P[1] <- Pt
-for(i in 2:100){
-  P[i] <- example_equation_function(b,c,Pt)
-  Pt <- P[i]
-}
 
-# Step 6. Plot P over time
-plot(P,xlab="time",ylab="P",pch=19,col="black")
 
-#### INSERT YOUR CODE BELOW
